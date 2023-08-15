@@ -1,0 +1,27 @@
+---
+- name: Nginx install & start
+  hosts: all
+  become: true
+
+  tasks:
+    - name: nginx install
+      yum:
+        name: nginx
+        state: latest
+      tags:
+        - nginx-install
+
+    - name: nginx start
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+      tags:
+        - nginx-start
+
+    - name: nginx stopped
+      service:
+         name: nginx
+         state: stopped
+      tags:
+       - nginx-stop      

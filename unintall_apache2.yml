@@ -1,0 +1,11 @@
+---
+- name: apache2 uninstall
+  hosts: all
+  become: true
+
+  tasks:
+    - name: uninstall apache2
+      apt:
+        name: apache2
+        state: absent
+      when: ansible_os_family == "Debian"
